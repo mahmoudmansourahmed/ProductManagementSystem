@@ -24,7 +24,7 @@ namespace ProductManagementSystem.Business.Services
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            var result = from o in await _productRepository.GetAllAsync() join o2 in await _unitRepository.GET
+            //var result = from o in await _productRepository.GetAllAsync() join o2 in await _unitRepository.GET
             return await _productRepository.GetAllAsync();
         }
 
