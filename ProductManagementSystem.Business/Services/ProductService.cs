@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProductManagementSystem.Data.Extentions;
 
 namespace ProductManagementSystem.Business.Services
 {
@@ -22,10 +23,12 @@ namespace ProductManagementSystem.Business.Services
             _supplierRepository = supplierRepository;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync()
+        public async Task<IEnumerable<Product>> GetAllProductsAsync(string? ProductName)
         {
-            //var result = from o in await _productRepository.GetAllAsync() join o2 in await _unitRepository.GET
-            return await _productRepository.GetAllAsync();
+            var result = (await _productRepository.GetAllAsync()).AsQueryable().WhereIf(!string.IsNullOrWhiteSpace(ProductName), o => o.ProductName.Contains(ProductName));
+                         //join o2 in await _unitRepository.GET
+
+            return result;//await _productRepository.GetAllAsync();
         }
 
         public async Task<Product> GetProductByIdAsync(int id)

@@ -89,5 +89,41 @@ export default {
       console.error('Error fetching products to reorder:', error);
       throw error;
     }
+  },
+
+  /**
+   * البحث في المنتجات
+   * @param {*} query
+   * @returns
+   */
+  async searchProducts(query) {
+    try {
+      const response = await axios.get(`${API_URL}?productName=${query}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error searching products:', error);
+      throw error;
+    }
+  },
+
+  async getProductsToReorder() {
+    try {
+      const response = await axios.get(`${API_URL}/reorder`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching products to reorder:', error);
+      throw error;
+    }
+  },
+
+  async getProductWithMinOrders() {
+    try {
+      const response = await axios.get(`${API_URL}/min-orders`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching product with minimum orders:', error);
+      throw error;
+    }
   }
+
 };

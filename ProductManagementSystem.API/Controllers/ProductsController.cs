@@ -19,9 +19,9 @@ namespace ProductManagementSystem.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string? ProductName)
         {
-            var products = await _productService.GetAllProductsAsync();
+           var products = await _productService.GetAllProductsAsync(ProductName);
             return Ok(products);
         }
 

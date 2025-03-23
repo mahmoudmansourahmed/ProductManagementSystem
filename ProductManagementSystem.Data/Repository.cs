@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProductManagementSystem.Domain;
+using ProductManagementSystem.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductManagementSystem.Data
+namespace ProductManagementSystem.Domain
 {
     public class Repository<T> : IRepository<T> where T : class
     {

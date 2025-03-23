@@ -2,6 +2,16 @@
   <div>
     <h2>Product List</h2>
     <div class="CenterPage">
+        <label for="nameFilter">Filter by name : </label><br />
+        <input name="nameFilter"
+          type="text"
+          v-model="searchQuery"
+          placeholder="Search by product name"
+          @input="searchProducts"
+        />
+    </div>
+      <br />
+    <div class="CenterPage">
       <table>
         <thead>
 
@@ -28,6 +38,7 @@
   export default {
     data() {
       return {
+        searchQuery: '',
         products: []
       };
     },
@@ -46,14 +57,24 @@
         } catch (error) {
           console.error('Failed to delete product:', error);
         }
+      },
+      async searchProducts() {
+
+          try {
+            this.products = await productService.searchProducts(this.searchQuery);
+          } catch (error) {
+            console.error('Error searching products:', error);
+          }
+
       }
     }
+
   };
 </script>
 
 <style scoped>
   table {
-      width: 50%; /* عرض الجدول نصف الصفحة */
+      width: 70%; /* عرض الجدول نصف الصفحة */
       border-collapse: collapse; /* لجعل الخطوط بين الخلايا متصلة */
   }
 
@@ -80,11 +101,11 @@
     margin: 10px 0;
   }
 
+
   .CenterPage {
     display: flex;
     justify-content: center;
     align-items: center;
-
     margin: 0;
     font-family: Arial, sans-serif;
   }
