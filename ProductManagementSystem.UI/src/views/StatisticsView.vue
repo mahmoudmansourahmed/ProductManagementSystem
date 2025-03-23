@@ -5,19 +5,19 @@
       <h3>Products to Reorder</h3>
       <ul>
         <li v-for="product in productsToReorder" :key="product.id">
-          {{ product.name }} - {{ product.unitsInStock }} units in stock
+          {{ product.productName }} - {{ product.unitsInStock }} units in stock
         </li>
       </ul>
     </div>
 
     <div>
       <h3>Largest Supplier</h3>
-      <p>{{ largestSupplier.name }} - {{ largestSupplier.productCount }} products</p>
+      <p>{{ largestSupplier.supplierName }} - {{ largestSupplier.productCount }} products</p>
     </div>
 
     <div>
       <h3>Product with Minimum Orders</h3>
-      <p>{{ productWithMinOrders.name }} - {{ productWithMinOrders.unitsOnOrder }} units on order</p>
+      <p>{{ productWithMinOrders.productName }} - {{ productWithMinOrders.unitsOnOrder }} units on order</p>
     </div>
   </div>
 </template>

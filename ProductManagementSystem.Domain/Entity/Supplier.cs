@@ -10,6 +10,6 @@ namespace ProductManagementSystem.Domain.Entity
     {
         public int Id { get; set; }
         public string SupplierName { get; set; }
-        public ICollection<Product> Products { get; set; }
+        public ICollection<Product>? Products { get; set; }
     }
 }

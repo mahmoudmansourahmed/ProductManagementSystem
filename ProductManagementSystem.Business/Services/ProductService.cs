@@ -28,7 +28,7 @@ namespace ProductManagementSystem.Business.Services
             var result = (await _productRepository.GetAllAsync()).AsQueryable().WhereIf(!string.IsNullOrWhiteSpace(ProductName), o => o.ProductName.Contains(ProductName));
                          //join o2 in await _unitRepository.GET
 
-            return result;//await _productRepository.GetAllAsync();
+            return result;
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
