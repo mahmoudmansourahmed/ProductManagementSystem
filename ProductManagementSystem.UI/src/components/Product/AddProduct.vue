@@ -48,6 +48,40 @@
         </select>
       </div>
 
+      <div>
+        <label for="ReorderLevel">Reorder Level:</label>
+        <input
+          type="number"
+          id="ReorderLevel"
+          v-model="product.reorderLevel"
+          required
+          placeholder="Enter Reorder Level"
+        />
+      </div>
+
+      <div>
+        <label for="unitsInStock">units In Stock:</label>
+        <input
+          type="number"
+          id="unitsInStock"
+          v-model="product.unitsInStock"
+          required
+          placeholder="Enter units In Stock"
+        />
+      </div>
+
+      <div>
+        <label for="unitsOnOrder">units On Order:</label>
+        <input
+          type="number"
+          id="unitsOnOrder"
+          v-model="product.unitsOnOrder"
+          required
+          placeholder="Enter Units On Order"
+        />
+      </div>
+
+
       <!-- زر لإضافة المنتج -->
       <button type="submit">Add Product</button>
     </form>
@@ -59,10 +93,12 @@
   </div>
 </template>
 
+
 <script lang="ts">
 import productService from '@/services/productService';
 import supplierService from '@/services/supplierService';
 import unitService from '@/services/unitService';
+
 
 export default {
   data() {
@@ -71,7 +107,10 @@ export default {
         productName: '',
         unitPrice: 0,
         supplierId: null, // معرف المورد
-        quantityPerUnitId: null // معرف الوحدة
+        quantityPerUnitId: null, // معرف الوحدة
+        reorderLevel: 0,
+        unitsInStock: 0,
+        unitsOnOrder: 0
       },
       suppliers: [], // قائمة الموردين
       units: [], // قائمة الوحدات

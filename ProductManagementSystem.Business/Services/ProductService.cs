@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProductManagementSystem.Data.Extentions;
+using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProductManagementSystem.Business.Services
 {
@@ -23,11 +25,21 @@ namespace ProductManagementSystem.Business.Services
             _supplierRepository = supplierRepository;
         }
 
-        public async Task<IEnumerable<Product>> GetAllProductsAsync(string? ProductName)
+        public async Task<IQueryable<Product>> GetAllProductsAsync(string? ProductName)
         {
-            var result = (await _productRepository.GetAllAsync()).AsQueryable().WhereIf(!string.IsNullOrWhiteSpace(ProductName), o => o.ProductName.Contains(ProductName));
-                         //join o2 in await _unitRepository.GET
-
+            var query = (await _productRepository.GetAllAsync()).AsQueryable().WhereIf(!string.IsNullOrWhiteSpace(ProductName), o => o.ProductName.Contains(ProductName));
+            //var result = from o in query join o2 in await _unitRepository.GetAllAsync() on o.QuantityPerUnitId equals o2.Id
+            //             select new
+            //             {
+            //                 ID = o.Id,
+            //                 ProductName = o.ProductName,
+            //                 o.QuantityPerUnitId,
+            //                 o.UnitPrice,
+            //                 o.UnitsInStock,    
+            //                 o.ReorderLevel,
+            //                 o.
+            //             } 
+            var result = query.AsQueryable();
             return result;
         }
 

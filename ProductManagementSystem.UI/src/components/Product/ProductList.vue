@@ -25,7 +25,10 @@
           <tr v-for="product in products" :key="product.id">
             <td>{{ product.productName }}</td>
             <td>{{ product.unitPrice }}</td>
-            <td><button @click="deleteProduct(product.id)">Delete</button></td></tr>
+            <td>
+              <button @click="deleteProduct(product.id)">Delete</button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -51,13 +54,17 @@
     },
     methods: {
       async deleteProduct(id) {
-        try {
-          await productService.deleteProduct(id);
-          this.products = this.products.filter(product => product.id !== id);
-        } catch (error) {
-          console.error('Failed to delete product:', error);
+        if(confirm('Are you sure you want to delete this record?')) {
+          try {
+            await productService.deleteProduct(id);
+            this.products = this.products.filter(product => product.id !== id);
+          } catch (error) {
+            console.error('Failed to delete product:', error);
+          }
         }
+
       },
+
       async searchProducts() {
 
           try {

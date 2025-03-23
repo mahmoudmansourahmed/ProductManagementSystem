@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       showAddProduct: false, // حالة للتبديل بين المكونات
+      productID: 0
     };
   },
 };
